@@ -105,7 +105,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ChatForm";
-            this.Text = "ContactApp1";
+            this.Text = "ContactMessenger";
             this.ResumeLayout(false);
             this.PerformLayout();
 
