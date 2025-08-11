@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
-            this.connectIPbutton = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
             this.tBox_ReceiveText = new System.Windows.Forms.TextBox();
             this.tBox_SendText = new System.Windows.Forms.TextBox();
@@ -37,18 +36,9 @@
             this.btnGetIp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // connectIPbutton
-            // 
-            this.connectIPbutton.Location = new System.Drawing.Point(661, 1);
-            this.connectIPbutton.Name = "connectIPbutton";
-            this.connectIPbutton.Size = new System.Drawing.Size(127, 48);
-            this.connectIPbutton.TabIndex = 0;
-            this.connectIPbutton.Text = "Connect IP";
-            this.connectIPbutton.UseVisualStyleBackColor = true;
-            // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(661, 248);
+            this.sendButton.Location = new System.Drawing.Point(661, 87);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(127, 42);
             this.sendButton.TabIndex = 1;
@@ -58,15 +48,18 @@
             // 
             // tBox_ReceiveText
             // 
-            this.tBox_ReceiveText.Location = new System.Drawing.Point(11, 350);
+            this.tBox_ReceiveText.Location = new System.Drawing.Point(254, 125);
+            this.tBox_ReceiveText.Multiline = true;
             this.tBox_ReceiveText.Name = "tBox_ReceiveText";
-            this.tBox_ReceiveText.Size = new System.Drawing.Size(777, 22);
+            this.tBox_ReceiveText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tBox_ReceiveText.Size = new System.Drawing.Size(277, 261);
             this.tBox_ReceiveText.TabIndex = 2;
             this.tBox_ReceiveText.Text = "Here will be message from your friend";
+            this.tBox_ReceiveText.TextChanged += new System.EventHandler(this.tBox_ReceiveText_TextChanged);
             // 
             // tBox_SendText
             // 
-            this.tBox_SendText.Location = new System.Drawing.Point(12, 258);
+            this.tBox_SendText.Location = new System.Drawing.Point(12, 97);
             this.tBox_SendText.Name = "tBox_SendText";
             this.tBox_SendText.Size = new System.Drawing.Size(643, 22);
             this.tBox_SendText.TabIndex = 3;
@@ -82,7 +75,7 @@
             // 
             // btnGetIp
             // 
-            this.btnGetIp.Location = new System.Drawing.Point(661, 54);
+            this.btnGetIp.Location = new System.Drawing.Point(661, 6);
             this.btnGetIp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGetIp.Name = "btnGetIp";
             this.btnGetIp.Size = new System.Drawing.Size(127, 38);
@@ -101,7 +94,6 @@
             this.Controls.Add(this.tBox_SendText);
             this.Controls.Add(this.tBox_ReceiveText);
             this.Controls.Add(this.sendButton);
-            this.Controls.Add(this.connectIPbutton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ChatForm";
@@ -112,8 +104,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button connectIPbutton;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.TextBox tBox_ReceiveText;
         private System.Windows.Forms.TextBox tBox_SendText;

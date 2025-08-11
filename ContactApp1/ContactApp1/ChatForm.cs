@@ -30,12 +30,12 @@ namespace ContactApp1
             //--.
             StartListening();
         }
-        
+
         //------------------------------------------------------------------
         //--.
         private void StartListening()
         {
-            listenThread = new Thread( ListenForMessages );
+            listenThread = new Thread(ListenForMessages);
             listenThread.IsBackground = true;
             listenThread.Start();
         }
@@ -47,11 +47,11 @@ namespace ContactApp1
         {
             try
             {
-                listener = new TcpListener( IPAddress.Any, 5000 );
+                listener = new TcpListener(IPAddress.Any, 5000);
                 listener.Start();
 
                 //--.
-                while( true )
+                while (true)
                 {
                     TcpClient client = listener.AcceptTcpClient();
                     NetworkStream stream = client.GetStream();
@@ -61,7 +61,7 @@ namespace ContactApp1
 
 
                     //--.
-                    while( (bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0 )
+                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         UpdateReceiveText("Received: " + message);
@@ -70,7 +70,7 @@ namespace ContactApp1
                     client.Close();
                 }
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show("Error in listener: " + ex.Message);
             }
@@ -79,14 +79,14 @@ namespace ContactApp1
 
         //------------------------------------------------------------------
         //--.
-        private void UpdateReceiveText( string message )
+        private void UpdateReceiveText(string message)
         {
-            if(tBox_ReceiveText.InvokeRequired )
+            if (tBox_ReceiveText.InvokeRequired)
             {
-                tBox_ReceiveText.Invoke( new MethodInvoker (
-                    delegate                 
+                tBox_ReceiveText.Invoke(new MethodInvoker(
+                    delegate
                     {
-                        tBox_ReceiveText.AppendText(message + Environment.NewLine); 
+                        tBox_ReceiveText.AppendText(message + Environment.NewLine);
                     }
                     ));
             }
@@ -111,7 +111,7 @@ namespace ContactApp1
                 }
 
 
-                if ( client == null || !client.Connected )
+                if (client == null || !client.Connected)
                 {
                     client = new TcpClient();
                     client.Connect(ip, 5000); // используем IP из текстового поля
@@ -124,7 +124,7 @@ namespace ContactApp1
                 tBox_ReceiveText.AppendText("Sent: " + tBox_SendText.Text + Environment.NewLine);
                 tBox_SendText.Clear();
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show("Error sending message: " + ex.Message);
             }
@@ -132,7 +132,7 @@ namespace ContactApp1
 
         //----------------------------------------------------------------------------------------
         //--.
-        private void btnGetIp_Click( object sender, EventArgs e )
+        private void btnGetIp_Click(object sender, EventArgs e)
         {
             string ipAddress = GetLocalIPAddress();
             if (ipAddress != null)
@@ -167,5 +167,35 @@ namespace ContactApp1
                 return null;
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tBox_ReceiveText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void listBoxMessages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        { }
+
+
+
     }
 }
+    
+  
