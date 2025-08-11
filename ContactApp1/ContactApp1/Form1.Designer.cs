@@ -1,6 +1,6 @@
 ﻿namespace ContactApp1
 {
-    partial class Form1
+    partial class ChatForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.connectIPbutton = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
             this.connectIPbox = new System.Windows.Forms.TextBox();
@@ -78,7 +79,7 @@
             this.textBox3.TabIndex = 4;
             this.textBox3.Text = "Enter IP to connect";
             // 
-            // Form1
+            // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,8 +89,10 @@
             this.Controls.Add(this.connectIPbox);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.connectIPbutton);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "ChatForm";
+            this.Text = "ContactApp1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
