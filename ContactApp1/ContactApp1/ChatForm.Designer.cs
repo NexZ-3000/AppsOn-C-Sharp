@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.connectIPbutton = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
             this.tBox_ReceiveText = new System.Windows.Forms.TextBox();
             this.tBox_SendText = new System.Windows.Forms.TextBox();
             this.tBox_IpNum = new System.Windows.Forms.TextBox();
             this.btnGetIp = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // connectIPbutton
@@ -91,29 +91,21 @@
             this.btnGetIp.UseVisualStyleBackColor = true;
             this.btnGetIp.Click += new System.EventHandler(this.btnGetIp_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(692, 153);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(800, 398);
             this.Controls.Add(this.btnGetIp);
             this.Controls.Add(this.tBox_IpNum);
             this.Controls.Add(this.tBox_SendText);
             this.Controls.Add(this.tBox_ReceiveText);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.connectIPbutton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ChatForm";
-            this.Text = "Form1";
+            this.Text = "ContactApp1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,7 +119,6 @@
         private System.Windows.Forms.TextBox tBox_SendText;
         private System.Windows.Forms.TextBox tBox_IpNum;
         private System.Windows.Forms.Button btnGetIp;
-        private System.Windows.Forms.Button button1;
     }
 }
 
