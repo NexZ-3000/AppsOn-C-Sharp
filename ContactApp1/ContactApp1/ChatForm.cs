@@ -119,7 +119,7 @@ namespace ContactApp1
                     stream = client.GetStream();
                 }
 
-                byte[] data = Encoding.UTF8.GetBytes(NickName + tBox_SendText.Text);
+                byte[] data = Encoding.UTF8.GetBytes(NickName +": " + tBox_SendText.Text);
                 stream.Write(data, 0, data.Length);
 
                 tBox_ReceiveText.AppendText(NickName + ":" + tBox_SendText.Text + Environment.NewLine);
