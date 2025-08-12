@@ -45,8 +45,7 @@
             // 
             // btnSend
             // 
-            this.AcceptButton = btnSend;
-            this.btnSend.Location = new System.Drawing.Point(661, 87);
+            this.btnSend.Location = new System.Drawing.Point(661, 102);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(127, 42);
             this.btnSend.TabIndex = 1;
@@ -57,7 +56,7 @@
             // tBox_ReceiveText
             // 
             this.tBox_ReceiveText.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tBox_ReceiveText.Location = new System.Drawing.Point(254, 125);
+            this.tBox_ReceiveText.Location = new System.Drawing.Point(250, 150);
             this.tBox_ReceiveText.Multiline = true;
             this.tBox_ReceiveText.Name = "tBox_ReceiveText";
             this.tBox_ReceiveText.ReadOnly = true;
@@ -68,7 +67,7 @@
             // 
             // tBox_SendText
             // 
-            this.tBox_SendText.Location = new System.Drawing.Point(12, 97);
+            this.tBox_SendText.Location = new System.Drawing.Point(12, 122);
             this.tBox_SendText.Name = "tBox_SendText";
             this.tBox_SendText.Size = new System.Drawing.Size(643, 22);
             this.tBox_SendText.TabIndex = 3;
@@ -76,7 +75,7 @@
             // 
             // tBox_IpNum
             // 
-            this.tBox_IpNum.Location = new System.Drawing.Point(12, 21);
+            this.tBox_IpNum.Location = new System.Drawing.Point(12, 38);
             this.tBox_IpNum.Name = "tBox_IpNum";
             this.tBox_IpNum.Size = new System.Drawing.Size(643, 22);
             this.tBox_IpNum.TabIndex = 4;
@@ -84,7 +83,7 @@
             // 
             // btnGetIp
             // 
-            this.btnGetIp.Location = new System.Drawing.Point(661, 45);
+            this.btnGetIp.Location = new System.Drawing.Point(661, 56);
             this.btnGetIp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGetIp.Name = "btnGetIp";
             this.btnGetIp.Size = new System.Drawing.Size(127, 43);
@@ -95,9 +94,9 @@
             // 
             // connectButton
             // 
-            this.connectButton.Location = new System.Drawing.Point(661, 14);
+            this.connectButton.Location = new System.Drawing.Point(661, 10);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(127, 37);
+            this.connectButton.Size = new System.Drawing.Size(127, 41);
             this.connectButton.TabIndex = 6;
             this.connectButton.Text = "Connect IP";
             this.connectButton.UseVisualStyleBackColor = true;
@@ -105,7 +104,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 69);
+            this.textBox1.Location = new System.Drawing.Point(12, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(111, 22);
             this.textBox1.TabIndex = 7;
@@ -114,7 +113,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(129, 45);
+            this.button1.Location = new System.Drawing.Point(129, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 46);
             this.button1.TabIndex = 8;
@@ -124,7 +123,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(661, 348);
+            this.clearButton.Location = new System.Drawing.Point(661, 373);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(127, 38);
             this.clearButton.TabIndex = 9;
@@ -134,7 +133,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 45);
+            this.textBox2.Location = new System.Drawing.Point(12, 70);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(76, 22);
@@ -143,7 +142,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 2);
+            this.textBox3.Location = new System.Drawing.Point(12, 10);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(100, 22);
@@ -152,7 +151,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(141, 125);
+            this.textBox4.Location = new System.Drawing.Point(137, 150);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(107, 22);
@@ -161,9 +160,10 @@
             // 
             // ChatForm
             // 
+            this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 398);
+            this.ClientSize = new System.Drawing.Size(800, 430);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
