@@ -130,9 +130,9 @@ namespace ContactApp1
 
         //------------------------------------------------------------------
         //--.
-        private void UpdateReceiveText( string message )
+        private void UpdateReceiveText(string message)
         {
-            if( tBox_ReceiveText.InvokeRequired )
+            if (tBox_ReceiveText.InvokeRequired)
             {
                 tBox_ReceiveText.Invoke(new MethodInvoker(
                     delegate
@@ -147,6 +147,9 @@ namespace ContactApp1
             }
         }
 
+       
+        
+        
         //------------------------------------------------------------------
         //--.
         private void btnSend_Click( object sender, EventArgs e )
