@@ -32,6 +32,7 @@ namespace ContactApp1
         }
 
         //------------------------------------------------------------------
+        private string NickName;
         //--.
         private void StartListening()
         {
@@ -121,7 +122,7 @@ namespace ContactApp1
                 byte[] data = Encoding.UTF8.GetBytes(tBox_SendText.Text);
                 stream.Write(data, 0, data.Length);
 
-                tBox_ReceiveText.AppendText("Sent: " + tBox_SendText.Text + Environment.NewLine);
+                tBox_ReceiveText.AppendText(NickName + ":" + tBox_SendText.Text + Environment.NewLine);
                 tBox_SendText.Clear();
             }
             catch (Exception ex)
@@ -193,8 +194,36 @@ namespace ContactApp1
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         { }
 
+        private void connectButton_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void tBox_IpNum_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NickName = textBox1.Text.Trim(); // считываем и убираем пробелы по краям
+
+            if (string.IsNullOrEmpty(NickName))
+            {
+                MessageBox.Show("Пожалуйста, введите ДЕЙСТВИТЕЛЬНЫЙ никнейм.", "Ты тупой?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Если значение не пустое — можно использовать NickName дальше
+            // Например, вывести на экран или сохранить
+            MessageBox.Show($"Ваш никнейм: {NickName} был успешно применен!", "Никнейм успешно применён", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
     
