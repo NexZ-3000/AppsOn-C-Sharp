@@ -65,7 +65,7 @@ namespace ContactApp1
                     while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        UpdateReceiveText("получено" + message);
+                        UpdateReceiveText(message);
                     }
 
                     client.Close();
@@ -122,7 +122,7 @@ namespace ContactApp1
                 byte[] data = Encoding.UTF8.GetBytes(NickName +": " + tBox_SendText.Text);
                 stream.Write(data, 0, data.Length);
 
-                tBox_ReceiveText.AppendText(NickName + ":" + tBox_SendText.Text + Environment.NewLine);
+                tBox_ReceiveText.AppendText(NickName + ": " + tBox_SendText.Text + Environment.NewLine);
                 tBox_SendText.Clear();
             }
             catch (Exception ex)
