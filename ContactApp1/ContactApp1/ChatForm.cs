@@ -15,11 +15,17 @@ namespace ContactApp1
 {
     public partial class ChatForm : Form
     {
+        //--.
+        private string NickName;
 
+        //--.
         private TcpListener listener;
         private TcpClient client;
         private NetworkStream stream;
         private Thread listenThread;
+
+        //--.
+        private volatile bool bListening = false;
 
 
         //------------------------------------------------------------------
@@ -32,13 +38,36 @@ namespace ContactApp1
         }
 
         //------------------------------------------------------------------
-        private string NickName;
         //--.
         private void StartListening()
         {
-            listenThread = new Thread(ListenForMessages);
+            listenThread = new Thread( ListenForMessages );
             listenThread.IsBackground = true;
             listenThread.Start();
+        }
+
+
+        //------------------------------------------------------------------
+        //--.
+        private void StopListening()
+        {
+            bListening = false;
+
+            //--.
+            try
+            {
+                if( listener != null )
+                {
+                    listener.Stop();
+                }
+            }
+            catch { }
+
+            //--.
+            if( listenThread != null )
+            {
+                listenThread.Join( 500 );
+            }
         }
 
 
@@ -48,12 +77,23 @@ namespace ContactApp1
         {
             try
             {
-                listener = new TcpListener(IPAddress.Any, 5000);
+                listener = new TcpListener( IPAddress.Any, 5000 );
                 listener.Start();
+                //--.
+                bListening = true;
 
                 //--.
-                while (true)
+                while( bListening )
                 {
+                    
+                    //--. чтобы не грузить CPU
+                    if( !listener.Pending() )
+                    {
+                        Thread.Sleep(100);
+                        continue;
+                    }
+                    
+                    
                     TcpClient client = listener.AcceptTcpClient();
                     NetworkStream stream = client.GetStream();
 
@@ -62,27 +102,37 @@ namespace ContactApp1
 
 
                     //--.
-                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                    while( (bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0 )
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        UpdateReceiveText(message);
+                        UpdateReceiveText( message );
                     }
 
                     client.Close();
                 }
             }
-            catch (Exception ex)
+            catch( SocketException ex )
+            {
+                if( bListening )
+                    MessageBox.Show("Socket error: " + ex.Message);
+            }
+            catch( Exception ex )
             {
                 MessageBox.Show("Error in listener: " + ex.Message);
+            }
+            finally
+            {
+                if( listener != null )
+                    listener.Stop();
             }
         }
 
 
         //------------------------------------------------------------------
         //--.
-        private void UpdateReceiveText(string message)
+        private void UpdateReceiveText( string message )
         {
-            if (tBox_ReceiveText.InvokeRequired)
+            if( tBox_ReceiveText.InvokeRequired )
             {
                 tBox_ReceiveText.Invoke(new MethodInvoker(
                     delegate
@@ -97,25 +147,25 @@ namespace ContactApp1
             }
         }
 
-        //-----------------------------------------------------------------------------------
+        //------------------------------------------------------------------
         //--.
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSend_Click( object sender, EventArgs e )
         {
             try
             {
 
                 string ip = tBox_IpNum.Text.Trim();
-                if (string.IsNullOrEmpty(ip))
+                if( string.IsNullOrEmpty(ip) )
                 {
                     MessageBox.Show("Введите IP-адрес в поле.");
                     return;
                 }
 
 
-                if (client == null || !client.Connected)
+                if( client == null || !client.Connected )
                 {
                     client = new TcpClient();
-                    client.Connect(ip, 5000); // используем IP из текстового поля
+                    client.Connect( ip, 5000 ); // используем IP из текстового поля
                     stream = client.GetStream();
                 }
 
@@ -125,18 +175,19 @@ namespace ContactApp1
                 tBox_ReceiveText.AppendText(NickName + ": " + tBox_SendText.Text + Environment.NewLine);
                 tBox_SendText.Clear();
             }
-            catch (Exception ex)
+            catch( Exception ex )
             {
                 MessageBox.Show("Error sending message: " + ex.Message);
             }
         }
 
-        //----------------------------------------------------------------------------------------
+        //------------------------------------------------------------------
         //--.
-        private void btnGetIp_Click(object sender, EventArgs e)
+        private void btnGetIp_Click( object sender, EventArgs e )
         {
             string ipAddress = GetLocalIPAddress();
-            if (ipAddress != null)
+            //--.
+            if( ipAddress != null )
             {
                 tBox_IpNum.Text = ipAddress;
             }
@@ -146,7 +197,7 @@ namespace ContactApp1
             }
         }
 
-        //----------------------------------------------------------------------------------------
+        //------------------------------------------------------------------
         //--.
         private string GetLocalIPAddress()
         {
@@ -155,15 +206,15 @@ namespace ContactApp1
                 var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
                 foreach (var ip in host.AddressList)
                 {
-                    // Возьмём первый IPv4 адрес, который не является loopback (127.0.0.1)
-                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    //--. возьмём первый IPv4 адрес, который не является loopback (127.0.0.1)
+                    if( ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork )
                     {
                         return ip.ToString();
                     }
                 }
                 return null;
             }
-            catch (Exception)
+            catch( Exception )
             {
                 return null;
             }
@@ -194,9 +245,15 @@ namespace ContactApp1
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         { }
 
-        private void connectButton_Click(object sender, EventArgs e)
-        {
 
+        //------------------------------------------------------------------
+        //--.
+        private void connectButton_Click( object sender, EventArgs e )
+        {
+            //--.
+            StopListening();
+            //--.
+            StartListening();
         }
 
         private void tBox_IpNum_TextChanged(object sender, EventArgs e)
@@ -209,12 +266,14 @@ namespace ContactApp1
 
         }
 
-        
+
+        //------------------------------------------------------------------
+        //--.
         private void button1_Click(object sender, EventArgs e)
         {
             NickName = textBox1.Text.Trim(); // считываем и убираем пробелы по краям
 
-            if (string.IsNullOrEmpty(NickName))
+            if( string.IsNullOrEmpty(NickName) )
             {
                 MessageBox.Show("Пожалуйста, введите ДЕЙСТВИТЕЛЬНЫЙ никнейм.", "Ты тупой?", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -224,6 +283,7 @@ namespace ContactApp1
             // Например, вывести на экран или сохранить
             MessageBox.Show($"Ваш никнейм: {NickName} был успешно применен!", "Никнейм успешно применён", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
     }
 }
     
