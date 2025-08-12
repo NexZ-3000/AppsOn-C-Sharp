@@ -16,7 +16,7 @@ namespace ContactApp1
     public partial class ChatForm : Form
     {
         //--.
-        private string NickName;
+        private string NickName = "User";
 
         //--.
         private TcpListener listener;
@@ -284,6 +284,11 @@ namespace ContactApp1
             MessageBox.Show($"Ваш никнейм: {NickName} был успешно применен!", "Никнейм успешно применён", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tBox_ReceiveText.Clear();
+            tBox_SendText.Clear();
+        }
     }
 }
     
